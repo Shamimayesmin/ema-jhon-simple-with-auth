@@ -3,9 +3,15 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../components/contexts/UserContext';
 
 const PrivateRoute = ({children}) => {
-    const {user} = useContext(AuthContext)
+    const {user,loading} = useContext(AuthContext)  //rm -rf .git
 
-    const location = useLocation()
+    const location = useLocation();
+
+    if(loading){
+        console.log('yes loading found')
+        return <div>Loading...</div>
+
+    }
     if(user && user.uid){
         return children;
     }
